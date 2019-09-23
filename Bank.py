@@ -1,8 +1,7 @@
 import zerorpc
 namaNasabah = ["Bambang", "Bukapedia"]
-saldoNasabah = [500000, 1000000]
-# bambang = 400
-# toko = 500
+saldoNasabah = [50000, 100000]
+
 class Bank(object):
     def pindahSaldo(self, id1, id2, amount):
         hitungan = 0

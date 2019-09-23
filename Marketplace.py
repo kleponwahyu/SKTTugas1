@@ -24,9 +24,6 @@ class Marketplace(object):
     		return "Gagal TopUp karena saldo di bank tidak mencukupi"
     	elif accepted == 0:
     		return "Gagal TopUp karena nasabah tidak terdaftar di bank"
-        # global saldoBambang
-        # saldoBambang = saldoBambang + amount
-        # return "Berhasil bro! Saldo OpO mu = %s" % saldoBambang
 
     def cekNama(self, namaclient):
     	global namaClientMarketplace
@@ -39,5 +36,3 @@ class Marketplace(object):
 s = zerorpc.Server(Marketplace())
 s.bind("tcp://0.0.0.0:10000")
 s.run()
-# print (Marketplace.hello("Wahyu!"))
-# print (Marketplace.jumlah(4, 6))
