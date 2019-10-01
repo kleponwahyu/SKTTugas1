@@ -5,7 +5,6 @@ saldoNasabah = [25000, 50000, 100000]
 class Bank(object):
     def pindahSaldo(self, id1, id2, amount):
         hitungan = 0
-        accepted1 = 0
         for x in namaNasabah:
             if id1 == x:
                 accepted1 = 1
@@ -14,7 +13,6 @@ class Bank(object):
                 hitungan = hitungan + 1
         indexid1 = hitungan
         hitungan = 0
-        accepted2 = 0
         for x in namaNasabah:
             if id2 == x:
                 accepted2 = 1
