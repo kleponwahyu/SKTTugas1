@@ -46,7 +46,8 @@ class Marketplace(object):
                     index = index + 1
         saldoClientMarketplace[index] = saldoClientMarketplace[index] - jumlahpulsa;
         hasil = Operator.beliPulsa(nomorhp, jumlahpulsa)
-        return "Berhasil menambahkan pulsa, pulsa saat ini %s" % hasil
+        print(namaClientMarketplace[index] + " beli pulsa sebesar " + str(hasil))
+        #return "Berhasil menambahkan pulsa, pulsa saat ini %s" % hasil
 
 Server = zerorpc.Server(Marketplace())
 Server.bind("tcp://0.0.0.0:8081")
