@@ -33,6 +33,6 @@ class Bank(object):
         else:
             return 0
 
-s = zerorpc.Server(Bank())
-s.bind("tcp://0.0.0.0:9999")
-s.run()
+Server = zerorpc.Server(Bank())
+Server.bind("tcp://0.0.0.0:8080")
+Server.run()

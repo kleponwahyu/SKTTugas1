@@ -1,7 +1,10 @@
 import zerorpc
 
-c = zerorpc.Client()
-c.connect("tcp://127.0.0.1:9999")
+Bank = zerorpc.Client()
+Bank.connect("tcp://127.0.0.1:8080")
+
+Operator = zerorpc.Client()
+Operator.connect("tcp://127.0.0.1:8082")
 
 namaClientMarketplace =  ["Joko", "Bambang"]
 saldoClientMarketplace = [0, 0]
@@ -15,7 +18,7 @@ class Marketplace(object):
                 break
 
     def topUp(self, namaclient, amount):
-    	accepted = c.pindahSaldo(namaclient, "Bukapedia", amount)
+    	accepted = Bank.pindahSaldo(namaclient, "Bukapedia", amount)
     	if accepted == 1:
     		index = 0
     		for x in namaClientMarketplace:
@@ -31,9 +34,20 @@ class Marketplace(object):
     	elif accepted == 0:
     		return "Gagal TopUp karena nasabah tidak terdaftar di bank"
 
-    #def beliPulsa(self, namaclient, amount):
+    def cekNomor(self, nomorhp):
+        return (Operator.cekNomor(nomorhp))
 
+    def beliPulsa(self, namaclient, nomorhp, jumlahpulsa):
+        index = 0
+        for x in namaClientMarketplace:
+                if namaclient == x:
+                    break
+                else:
+                    index = index + 1
+        saldoClientMarketplace[index] = saldoClientMarketplace[index] - jumlahpulsa;
+        hasil = Operator.beliPulsa(nomorhp, jumlahpulsa)
+        return "Berhasil menambahkan pulsa, pulsa saat ini %s" % hasil
 
-s = zerorpc.Server(Marketplace())
-s.bind("tcp://0.0.0.0:10000")
-s.run()
+Server = zerorpc.Server(Marketplace())
+Server.bind("tcp://0.0.0.0:8081")
+Server.run()
